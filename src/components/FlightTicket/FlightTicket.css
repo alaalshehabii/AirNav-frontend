@@ -148,26 +148,35 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items:center;
+  align-items: center;
 }
 
+/* EDIT BUTTON — FIXED */
 .admin-btn {
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--navy);
+  color: var(--navy);              /* ✅ FIX: text now visible */
   padding: 10px 16px;
   border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .admin-btn:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--navy);
+  color: #ffffff;
 }
 
+/* DELETE */
 .admin-btn.danger {
   border-color: var(--bad);
   color: var(--bad);
+}
+
+.admin-btn.danger:hover {
+  background: var(--bad);
+  color: white;
 }
 
 
