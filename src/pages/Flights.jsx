@@ -24,20 +24,16 @@ export default function Flights() {
   useEffect(() => {
     fetchFlights();
     if (user) fetchMyFlights();
-    // eslint-disable-next-line
   }, [user]);
 
   const fetchFlights = async () => {
     setError("");
     const res = await fetch(`${BASE_URL}/flights`);
-
     if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
       setFlights([]);
-      setError(data.detail || "Could not load flights.");
+      setError("Could not load flights.");
       return;
     }
-
     const data = await res.json();
     setFlights(Array.isArray(data) ? data : []);
   };
@@ -46,12 +42,10 @@ export default function Flights() {
     const res = await fetch(`${BASE_URL}/my-flights`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-
     if (!res.ok) {
       setMyFlights([]);
       return;
     }
-
     const data = await res.json();
     setMyFlights(Array.isArray(data) ? data : []);
   };
@@ -78,7 +72,6 @@ export default function Flights() {
 
     setEditingId(null);
     setFormData({ flight_number: "", origin: "", destination: "", status: "" });
-
     fetchFlights();
   };
 
@@ -116,7 +109,7 @@ export default function Flights() {
     fetchMyFlights();
   };
 
-  const isSaved = (flightId) => myFlights.some((f) => f.id === flightId);
+  const isSaved = (id) => myFlights.some((f) => f.id === id);
 
   return (
     <main className="page">
@@ -135,14 +128,12 @@ export default function Flights() {
             <input name="origin" placeholder="Origin" value={formData.origin} onChange={handleChange} required />
             <input name="destination" placeholder="Destination" value={formData.destination} onChange={handleChange} required />
             <input name="status" placeholder="Status" value={formData.status} onChange={handleChange} required />
-            <button className="primary-btn" type="submit">
-              {editingId ? "Update Flight" : "Add Flight"}
-            </button>
+            <button className="primary-btn">{editingId ? "Update" : "Add"}</button>
           </form>
         </section>
       )}
 
-      <div className="tickets">
+      <div className="tickets-grid">
         {flights.map((flight) => (
           <FlightTicket
             key={flight.id}
@@ -159,3 +150,4 @@ export default function Flights() {
     </main>
   );
 }
+

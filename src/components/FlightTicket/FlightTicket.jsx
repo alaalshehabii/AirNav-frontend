@@ -1,3 +1,4 @@
+
 import "./FlightTicket.css";
 
 export default function FlightTicket({
@@ -9,9 +10,7 @@ export default function FlightTicket({
   onEdit,
   onDelete,
 }) {
-  const statusClass = flight.status
-    .toLowerCase()
-    .replace(" ", "-"); // on-time, delayed, cancelled
+  const statusClass = flight.status.toLowerCase().replace(" ", "-");
 
   return (
     <div className="ticket">
@@ -24,23 +23,16 @@ export default function FlightTicket({
           <span>{flight.destination}</span>
         </div>
 
-        <div className={`status ${statusClass}`}>
-          {flight.status}
-        </div>
+        <div className={`status ${statusClass}`}>{flight.status}</div>
       </div>
 
       <div className="ticket-right">
-        {!isAdmin && (
-          isSaved ? (
-            <button className="save-btn" onClick={onRemove}>
-              Remove
-            </button>
+        {!isAdmin &&
+          (isSaved ? (
+            <button className="save-btn" onClick={onRemove}>Remove</button>
           ) : (
-            <button className="save-btn" onClick={onSave}>
-              Save
-            </button>
-          )
-        )}
+            <button className="save-btn" onClick={onSave}>Save</button>
+          ))}
 
         {isAdmin && (
           <>
@@ -52,3 +44,5 @@ export default function FlightTicket({
     </div>
   );
 }
+
+

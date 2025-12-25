@@ -1,0 +1,29 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(246,241,231,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+}
+
+.nav-center {
+  display: flex;
+  gap: 22px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  font-weight: 700;
+}
+

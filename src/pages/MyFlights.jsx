@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import FlightTicket from "../components/FlightTicket/FlightTicket";
 
@@ -10,23 +11,18 @@ export default function MyFlights() {
 
   useEffect(() => {
     fetchMyFlights();
-    // eslint-disable-next-line
   }, []);
 
   const fetchMyFlights = async () => {
     setError("");
-
     const res = await fetch(`${BASE_URL}/my-flights`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-
     if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
       setFlights([]);
-      setError(data.detail || "Could not load My Flights.");
+      setError("Could not load My Flights.");
       return;
     }
-
     const data = await res.json();
     setFlights(Array.isArray(data) ? data : []);
   };
@@ -36,7 +32,6 @@ export default function MyFlights() {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
-
     setFlights((prev) => prev.filter((f) => f.id !== id));
   };
 
@@ -44,19 +39,18 @@ export default function MyFlights() {
     <main className="page">
       <header className="page-header">
         <h1>My Flights</h1>
-        <p className="muted">Your saved tickets will appear here.</p>
+        <p className="muted">Your saved tickets.</p>
       </header>
 
       {error && <p className="error">{error}</p>}
       {flights.length === 0 && !error && <p className="muted">No saved flights yet.</p>}
 
-      <div className="tickets">
+      <div className="tickets-grid">
         {flights.map((flight) => (
           <FlightTicket
             key={flight.id}
             flight={flight}
-            isAdmin={false}
-            isSaved={true}
+            isSaved
             onRemove={() => removeFlight(flight.id)}
           />
         ))}
@@ -64,3 +58,4 @@ export default function MyFlights() {
     </main>
   );
 }
+
