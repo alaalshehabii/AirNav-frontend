@@ -13,7 +13,7 @@ const decodeToken = (token) => {
   } catch {
     throw new Error("Invalid token");
   }
-};
+}
 
 const handleResponse = async (res) => {
   let data;
