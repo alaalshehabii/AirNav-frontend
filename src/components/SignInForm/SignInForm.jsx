@@ -1,76 +1,71 @@
 // src/components/SignInForm/SignInForm.jsx
 
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router";
-
-import { signIn } from "../../services/authService";
-import { UserContext } from "../../contexts/UserContext";
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router';
+import { signIn } from '../../services/authService';
+import { UserContext } from '../../contexts/UserContext';
 
 const SignInForm = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
-  const { email, password } = formData;
-
   const handleChange = (evt) => {
-    setMessage("");
-    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+    setMessage('');
+    setFormData({
+      ...formData,
+      [evt.target.name]: evt.target.value,
+    });
   };
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    try {
-      const signedInUser = await signIn({
-        email,
-        password,
-      });
 
+    try {
+      const signedInUser = await signIn(formData);
       setUser(signedInUser);
-      navigate("/");
+      navigate('/');
     } catch (err) {
-      setMessage(err.message);
+      setMessage(err.message || 'Sign in failed');
     }
   };
 
   return (
     <main>
       <h1>Sign In</h1>
-      <p>{message}</p>
+      {message && <p style={{ color: 'red' }}>{message}</p>}
 
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label>Email:</label>
           <input
             type="email"
-            id="email"
             name="email"
-            value={email}
+            value={formData.email}
             onChange={handleChange}
             required
           />
         </div>
 
         <div>
-          <label htmlFor="password">Password:</label>
+          <label>Password:</label>
           <input
             type="password"
-            id="password"
             name="password"
-            value={password}
+            value={formData.password}
             onChange={handleChange}
             required
           />
         </div>
 
         <div>
-          <button>Sign In</button>
-          <button type="button" onClick={() => navigate("/")}>
+          <button type="submit">Sign In</button>
+          <button type="button" onClick={() => navigate('/')}>
             Cancel
           </button>
         </div>
