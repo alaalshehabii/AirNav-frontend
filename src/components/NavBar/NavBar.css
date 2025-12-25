@@ -2,7 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(246,241,231,0.95);
+
+  background: rgba(246, 241, 231, 0.95);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 
@@ -12,18 +13,97 @@
   padding: 14px 24px;
 }
 
+/* Logo */
+.logo {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.4px;
+}
+
+/* Center links */
 .nav-center {
   display: flex;
   gap: 22px;
 }
 
+.nav-center a {
+  font-weight: 500;
+  color: var(--navy);
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.nav-center a:hover {
+  opacity: 1;
+}
+
+/* Right section */
 .nav-right {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.logo {
-  font-weight: 700;
+.welcome {
+  font-size: 14px;
+  color: var(--muted);
 }
+
+/* Sign in / up links */
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--navy);
+  opacity: 0.85;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link.primary {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: white;
+  font-weight: 600;
+  opacity: 1;
+}
+
+.nav-link.primary:hover {
+  background: var(--navy-2);
+}
+
+/*  Sign Out Button */
+.nav-signout {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.nav-signout:hover {
+  background: var(--navy);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(11, 27, 51, 0.25);
+}
+
+.nav-signout:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(11, 27, 51, 0.2);
+}
+
+
 

@@ -1,7 +1,10 @@
+
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../../services/authService";
 import { UserContext } from "../../contexts/UserContext";
+import PlaneDivider from "../UI/PlaneDivider";
+import "../Auth/Auth.css";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -47,57 +50,73 @@ const SignUpForm = () => {
     !(username && email && password && password === passwordConf);
 
   return (
-    <main>
-      <h1>Sign Up</h1>
+    <main className="auth-page">
+      <section className="auth-card">
+        <h1 className="auth-title">Create Account</h1>
+        <p className="auth-subtitle">
+          Join AirNav and manage flights effortlessly
+        </p>
 
-      {message && <p style={{ color: "red" }}>{message}</p>}
+        <PlaneDivider />
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input name="username" value={username} onChange={handleChange} />
-        </div>
+        {message && <p className="error-text">{message}</p>}
 
-        <div>
-          <label>Email:</label>
-          <input
-            name="email"
-            type="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </div>
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div>
+            <label>Username</label>
+            <input name="username" value={username} onChange={handleChange} />
+          </div>
 
-        <div>
-          <label>Password:</label>
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </div>
+          <div>
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            name="passwordConf"
-            type="password"
-            value={passwordConf}
-            onChange={handleChange}
-          />
-        </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+            />
+          </div>
 
-        <button disabled={isFormInvalid() || loading}>
-          {loading ? "Signing up..." : "Sign Up"}
-        </button>
+          <div>
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="passwordConf"
+              value={passwordConf}
+              onChange={handleChange}
+            />
+          </div>
 
-        <button type="button" onClick={() => navigate("/")}>
-          Cancel
-        </button>
-      </form>
+          <div className="auth-actions">
+            <button
+              className="auth-primary"
+              disabled={isFormInvalid() || loading}
+            >
+              {loading ? "Signing up..." : "Sign Up"}
+            </button>
+            <button
+              className="auth-secondary"
+              type="button"
+              onClick={() => navigate("/")}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
     </main>
   );
 };
 
 export default SignUpForm;
+
