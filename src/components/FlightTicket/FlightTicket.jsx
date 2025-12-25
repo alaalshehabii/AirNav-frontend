@@ -1,4 +1,3 @@
-
 import "./FlightTicket.css";
 
 export default function FlightTicket({
@@ -44,5 +43,3 @@ export default function FlightTicket({
     </div>
   );
 }
-
-

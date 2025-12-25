@@ -89,3 +89,124 @@ a{ color: inherit; text-decoration: none; }
   background: var(--navy-2);
 }
 
+/* ========================= */
+/* Home Page Styling */
+/* ========================= */
+
+.home {
+  padding-top: 60px;
+}
+
+.home-hero {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+.home-hero h1 {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+
+.home-hero h1 span {
+  color: var(--navy);
+}
+
+.home-subtitle {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.home-card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+}
+
+.home-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+
+.home-card p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .home-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero h1 {
+    font-size: 32px;
+  }
+}
+
+
+/* ========================= */
+/* Hero plane UI */
+/* ========================= */
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-plane {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 420px;
+}
+
+.hero-plane .line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--navy),
+    transparent
+  );
+  opacity: 0.4;
+}
+
+.hero-plane .plane {
+  font-size: 16px;
+  color: var(--navy);
+  transform: rotate(90deg);
+  opacity: 0.9;
+}
+
+/* Small polish animation */
+.hero-plane .plane {
+  animation: floatPlane 3s ease-in-out infinite;
+}
+
+@keyframes floatPlane {
+  0% { transform: translateY(0) rotate(90deg); }
+  50% { transform: translateY(-4px) rotate(90deg); }
+  100% { transform: translateY(0) rotate(90deg); }
+}
+
