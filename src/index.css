@@ -210,3 +210,43 @@ a{ color: inherit; text-decoration: none; }
   100% { transform: translateY(0) rotate(90deg); }
 }
 
+
+/* ========================= */
+/* Home Airport Atmosphere */
+/* ========================= */
+
+.home {
+  position: relative;
+}
+
+/* soft clouds */
+.home::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(
+    circle at center,
+    rgba(11, 27, 51, 0.06),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.home::after {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  right: -140px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle at center,
+    rgba(11, 27, 51, 0.04),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+

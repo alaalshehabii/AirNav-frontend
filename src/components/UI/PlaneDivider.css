@@ -1,22 +1,44 @@
 
 .plane-divider {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin: 18px 0 24px;
+  gap: 16px;
+  margin: 18px 0 22px;
+  max-width: 420px;
 }
 
-.plane-divider .line {
-  height: 1px;
-  width: 70px;
-  background: var(--line);
+/* lines */
+.divider-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--navy),
+    transparent
+  );
+  opacity: 0.35;
 }
 
-.plane-divider .plane {
+/* plane */
+.plane-icon {
   font-size: 18px;
-  opacity: 0.8;
+  color: var(--navy);
+  transform: rotate(90deg);
+  animation: planeFly 3.5s ease-in-out infinite;
+  opacity: 0.9;
 }
 
-
-
-
+/* animation */
+@keyframes planeFly {
+  0% {
+    transform: translateY(0) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
