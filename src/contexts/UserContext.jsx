@@ -1,35 +1,60 @@
 // src/contexts/UserContext.jsx
 
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from "react";
 
+// Create the context
 const UserContext = createContext();
 
-function UserProvider({ children }) {
-  const getUserFromToken = () => {
-  const token = localStorage.getItem('token');
-
-  if (!token) return null;
-
-  return JSON.parse(atob(token.split('.')[1]));
+// Helper: safely decode JWT
+const decodeToken = (token) => {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(atob(base64));
+  } catch {
+    return null;
+  }
 };
 
-  // Create state just like you normally would in any other component
+function UserProvider({ children }) {
+  // Load user from token (if exists)
+  const getUserFromToken = () => {
+    const token = localStorage.getItem("token");
+    if (!token) return null;
+    return decodeToken(token);
+  };
+
   const [user, setUser] = useState(getUserFromToken());
-  // This is the user state and the setUser function that will update it!
-  // This variable name isn't special; it's just convention to use `value`.
-  const value = { user, setUser };
+
+  // Keep user in sync if token changes (refresh / manual edits)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setUser(null);
+    } else {
+      setUser(decodeToken(token));
+    }
+  }, []);
+
+  // Logout helper (VERY useful for NavBar)
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+
+  const value = {
+    user,
+    setUser,
+    logout,
+    isAuthenticated: !!user,
+    isAdmin: user?.is_admin === true,
+  };
 
   return (
     <UserContext.Provider value={value}>
-      {/* The data we pass to the value prop above is now available to */}
-      {/* all the children of the UserProvider component. */}
       {children}
     </UserContext.Provider>
   );
-};
+}
 
-// When components need to use the value of the user context, they will need
-// access to the UserContext object to know which context to access.
-// Therefore, we export it here.
 export { UserProvider, UserContext };
-

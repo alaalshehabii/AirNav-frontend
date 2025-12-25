@@ -2,12 +2,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 18px 22px;
-  margin-bottom: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-  max-width: 720px;
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.ticket:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.1);
+}
+
+.ticket::before {
+  content: "";
+  position: absolute;
+  left: 75%;
+  top: 10%;
+  bottom: 10%;
+  border-left: 2px dashed #e5e7eb;
 }
 
 .ticket-left {
@@ -17,64 +32,68 @@
 }
 
 .flight-number {
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #111;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0f172a;
 }
 
 .route {
   display: flex;
   align-items: center;
-  gap: 14px;
-}
-
-.city {
+  gap: 12px;
   font-size: 15px;
-  font-weight: 500;
 }
 
 .plane-line {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #666;
+  width: 60px;
+  height: 1px;
+  background: #0f172a;
+  position: relative;
 }
 
-.plane-line .line {
-  width: 40px;
-  height: 1px;
-  background: #ccc;
+.plane-line::after {
+  content: "✈";
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  font-size: 14px;
 }
 
 .status {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.status.on-time {
-  color: #1a9c5d;
+.status.on-time,
+.status.landed,
+.status.in-air {
+  color: #16a34a;
 }
 
-.status.delayed {
-  color: #c0392b;
+.status.boarding {
+  color: #ca8a04;
 }
 
-.ticket-actions {
+.status.delayed,
+.status.cancelled {
+  color: #dc2626;
+}
+
+.ticket-right {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.icon-btn {
-  background: none;
+.save-btn {
+  background: #0f172a;
+  color: white;
   border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  color: #555;
 }
 
-.icon-btn:hover {
-  color: #000;
-}
-
-.icon-btn.danger {
-  color: #c0392b;
+.save-btn:hover {
+  background: #020617;
 }

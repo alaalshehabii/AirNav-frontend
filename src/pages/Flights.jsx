@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import FlightTicket from "../components/FlightTicket/FlightTicket";
@@ -11,6 +12,7 @@ export default function Flights() {
   const [flights, setFlights] = useState([]);
   const [myFlights, setMyFlights] = useState([]);
   const [editingId, setEditingId] = useState(null);
+  const [error, setError] = useState("");
 
   const [formData, setFormData] = useState({
     flight_number: "",
@@ -22,27 +24,38 @@ export default function Flights() {
   useEffect(() => {
     fetchFlights();
     if (user) fetchMyFlights();
+    // eslint-disable-next-line
   }, [user]);
 
-  // ---------------- FETCH ALL FLIGHTS ----------------
   const fetchFlights = async () => {
+    setError("");
     const res = await fetch(`${BASE_URL}/flights`);
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      setFlights([]);
+      setError(data.detail || "Could not load flights.");
+      return;
+    }
+
     const data = await res.json();
-    setFlights(data);
+    setFlights(Array.isArray(data) ? data : []);
   };
 
-  // ---------------- FETCH MY FLIGHTS ----------------
   const fetchMyFlights = async () => {
     const res = await fetch(`${BASE_URL}/my-flights`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
+
+    if (!res.ok) {
+      setMyFlights([]);
+      return;
+    }
+
     const data = await res.json();
-    setMyFlights(data.map((f) => f.id));
+    setMyFlights(Array.isArray(data) ? data : []);
   };
 
-  // ---------------- FORM ----------------
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -64,12 +77,7 @@ export default function Flights() {
     });
 
     setEditingId(null);
-    setFormData({
-      flight_number: "",
-      origin: "",
-      destination: "",
-      status: "",
-    });
+    setFormData({ flight_number: "", origin: "", destination: "", status: "" });
 
     fetchFlights();
   };
@@ -87,20 +95,15 @@ export default function Flights() {
   const deleteFlight = async (id) => {
     await fetch(`${BASE_URL}/flights/${id}`, {
       method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
     fetchFlights();
   };
 
-  // ---------------- MY FLIGHTS ACTIONS ----------------
   const saveFlight = async (id) => {
     await fetch(`${BASE_URL}/my-flights/${id}`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
     fetchMyFlights();
   };
@@ -108,72 +111,44 @@ export default function Flights() {
   const removeFlight = async (id) => {
     await fetch(`${BASE_URL}/my-flights/${id}`, {
       method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
     fetchMyFlights();
   };
 
+  const isSaved = (flightId) => myFlights.some((f) => f.id === flightId);
+
   return (
-    <main>
-      <h1>Flights</h1>
+    <main className="page">
+      <header className="page-header">
+        <h1>Flights</h1>
+        <p className="muted">Browse flights and save tickets to My Flights.</p>
+      </header>
 
-      {/* ================= ADMIN FORM ================= */}
+      {error && <p className="error">{error}</p>}
+
       {user?.is_admin && (
-        <>
+        <section className="admin-panel">
           <h2>{editingId ? "Edit Flight" : "Add Flight"}</h2>
-
-          <form onSubmit={handleSubmit}>
-            <input
-              name="flight_number"
-              placeholder="Flight Number"
-              value={formData.flight_number}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              name="origin"
-              placeholder="Origin"
-              value={formData.origin}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              name="destination"
-              placeholder="Destination"
-              value={formData.destination}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              name="status"
-              placeholder="Status"
-              value={formData.status}
-              onChange={handleChange}
-              required
-            />
-
-            <button type="submit">
+          <form className="admin-form" onSubmit={handleSubmit}>
+            <input name="flight_number" placeholder="Flight Number" value={formData.flight_number} onChange={handleChange} required />
+            <input name="origin" placeholder="Origin" value={formData.origin} onChange={handleChange} required />
+            <input name="destination" placeholder="Destination" value={formData.destination} onChange={handleChange} required />
+            <input name="status" placeholder="Status" value={formData.status} onChange={handleChange} required />
+            <button className="primary-btn" type="submit">
               {editingId ? "Update Flight" : "Add Flight"}
             </button>
           </form>
-
-          <hr />
-        </>
+        </section>
       )}
 
-      {/* ================= FLIGHT TICKETS ================= */}
-      <div>
+      <div className="tickets">
         {flights.map((flight) => (
           <FlightTicket
             key={flight.id}
             flight={flight}
             isAdmin={user?.is_admin}
-            isSaved={myFlights.includes(flight.id)}
+            isSaved={isSaved(flight.id)}
             onSave={() => saveFlight(flight.id)}
             onRemove={() => removeFlight(flight.id)}
             onEdit={() => startEdit(flight)}
