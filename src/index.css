@@ -1,45 +1,105 @@
-
 :root{
-  --bg: #f6f1e7;
-  --card: #ffffff;
-  --navy: #0b1b33;
-  --navy-2: #102a52;
-  --muted: #6b7280;
-  --line: #e7dfd3;
+  /* ===== GULF AIR INSPIRED THEME ===== */
+  --bg: #f6f1e7;          /* light beige */
+  --card: #ffffff;       /* clean white cards */
+  --navy: #0b1b33;       /* deep aviation navy */
+  --navy-2: #102a52;     /* hover navy */
+  --gold: #c8a24d;       /* soft premium gold */
+  --muted: #6b7280;      /* soft gray text */
+  --line: #e7dfd3;       /* subtle separators */
 
-  --good: #16a34a;
-  --warn: #ca8a04;
-  --bad: #dc2626;
+  --good: #2e7d32;       /* landed / on time */
+  --warn: #c47f00;       /* boarding */
+  --bad: #b91c1c;        /* delayed / cancelled */
 }
 
-*{ box-sizing: border-box; }
+*{
+  box-sizing: border-box;
+}
 
 body{
-  margin:0;
+  margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background: var(--bg);
-  color: #0f172a;
+  background: linear-gradient(
+    to bottom,
+    #faf7f2,
+    var(--bg)
+  );
+  color: var(--navy);
 }
 
-a{ color: inherit; text-decoration: none; }
+a{
+  color: inherit;
+  text-decoration: none;
+}
 
+/* ===== PAGE ===== */
 .page{
   max-width: 1200px;
-  margin: 28px auto;
-  padding: 0 18px 60px;
+  margin: 32px auto;
+  padding: 0 18px 70px;
 }
 
-.page-header{
-  display:flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 18px;
+/* ===== HOME ===== */
+.home-hero{
+  max-width: 760px;
+  margin-bottom: 56px;
 }
 
-.muted{ color: var(--muted); }
-.error{ color: var(--bad); font-weight: 600; }
+.home-hero h1{
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin-bottom: 12px;
+}
 
-/* ===== GRID ===== */
+.home-subtitle{
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ===== HOME CARDS ===== */
+.home-cards{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+
+@media (max-width: 800px){
+  .home-cards{
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-card{
+  background: var(--card);
+  border-radius: 20px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.home-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(0,0,0,0.1);
+}
+
+.home-card h3{
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.home-card p{
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ===== TICKETS GRID ===== */
 .tickets-grid{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -53,200 +113,227 @@ a{ color: inherit; text-decoration: none; }
   }
 }
 
-/* ===== ADMIN ===== */
-.admin-panel{
-  background: rgba(255,255,255,0.6);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 16px;
-  margin: 16px 0 22px;
-}
+/* ===== FLIGHT TICKET ===== */
+.ticket{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-.admin-form{
-  display:grid;
-  grid-template-columns: repeat(4, 1fr) auto;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.admin-form input{
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  outline: none;
-}
-
-.primary-btn{
-  background: var(--navy);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 16px;
-  cursor: pointer;
-}
-
-.primary-btn:hover{
-  background: var(--navy-2);
-}
-
-/* ========================= */
-/* Home Page Styling */
-/* ========================= */
-
-.home {
-  padding-top: 60px;
-}
-
-.home-hero {
-  max-width: 720px;
-  margin-bottom: 48px;
-}
-
-.home-hero h1 {
-  font-size: 40px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  margin-bottom: 14px;
-}
-
-.home-hero h1 span {
-  color: var(--navy);
-}
-
-.home-subtitle {
-  font-size: 17px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.home-cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.home-card {
   background: var(--card);
-  border-radius: 18px;
-  padding: 26px;
+  border-radius: 22px;
+  padding: 30px 34px;
+  min-height: 160px;
+
   border: 1px solid var(--line);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.04);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.home-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+.ticket:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(0,0,0,0.12);
 }
 
-.home-card h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
+/* Perforation line */
+.ticket::after{
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  right: 150px;
+  border-left: 2px dashed var(--line);
+}
+
+/* LEFT */
+.ticket-left{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.flight-number{
+  font-size: 20px;
+  font-weight: 800;
   color: var(--navy);
 }
 
-.home-card p {
+/* ROUTE (Plane Up → Line → Plane Down) */
+.route{
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-size: 15px;
-  color: var(--muted);
-  line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-  .home-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .home-hero h1 {
-    font-size: 32px;
-  }
+.route-line{
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold),
+    transparent
+  );
+  position: relative;
 }
 
+.route-line::before{
+  content: "✈";
+  position: absolute;
+  left: -14px;
+  top: -12px;
+  font-size: 14px;
+  transform: rotate(-45deg);
+  color: var(--gold);
+}
 
-/* ========================= */
-/* Hero plane UI */
-/* ========================= */
+.route-line::after{
+  content: "✈";
+  position: absolute;
+  right: -14px;
+  top: -12px;
+  font-size: 14px;
+  transform: rotate(45deg);
+  color: var(--gold);
+}
 
-.hero-title {
+/* STATUS */
+.status{
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status.on-time,
+.status.landed,
+.status.in-air{
+  color: var(--good);
+}
+
+.status.boarding{
+  color: var(--warn);
+}
+
+.status.delayed,
+.status.cancelled{
+  color: var(--bad);
+}
+
+/* RIGHT (Buttons stacked nicely) */
+.ticket-right{
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.hero-plane {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  max-width: 420px;
+/* BUTTONS */
+.save-btn{
+  background: var(--navy);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
 }
 
-.hero-plane .line {
-  flex: 1;
-  height: 1.5px;
+.save-btn:hover{
+  background: var(--navy-2);
+  transform: translateY(-1px);
+}
+
+.remove-btn{
+  background: #f1dada;
+  color: var(--bad);
+  border: 1px solid var(--bad);
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+/* ================================
+   ADD FLIGHT – GULF AIR STYLE
+================================ */
+
+.add-flight-wrapper{
+  background: var(--card);
+  border-radius: 22px;
+  padding: 26px 28px;
+  margin: 26px 0 40px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.add-flight-wrapper h3{
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: var(--navy);
+}
+
+/* Grid layout */
+.add-flight-form{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (max-width: 900px){
+  .add-flight-form{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Inputs */
+.add-flight-form input,
+.add-flight-form select{
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: #faf7f2;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  transition: border .2s ease, box-shadow .2s ease;
+}
+
+.add-flight-form input::placeholder{
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.add-flight-form input:focus,
+.add-flight-form select:focus{
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200,162,77,0.18);
+}
+
+/* ADD BUTTON */
+.add-flight-btn{
   background: linear-gradient(
     to right,
-    transparent,
     var(--navy),
-    transparent
+    var(--navy-2)
   );
-  opacity: 0.4;
+  color: white;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+  white-space: nowrap;
 }
 
-.hero-plane .plane {
-  font-size: 16px;
-  color: var(--navy);
-  transform: rotate(90deg);
-  opacity: 0.9;
-}
-
-/* Small polish animation */
-.hero-plane .plane {
-  animation: floatPlane 3s ease-in-out infinite;
-}
-
-@keyframes floatPlane {
-  0% { transform: translateY(0) rotate(90deg); }
-  50% { transform: translateY(-4px) rotate(90deg); }
-  100% { transform: translateY(0) rotate(90deg); }
+.add-flight-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(11,27,51,0.35);
 }
 
 
-/* ========================= */
-/* Home Airport Atmosphere */
-/* ========================= */
-
-.home {
-  position: relative;
-}
-
-/* soft clouds */
-.home::before {
-  content: "";
-  position: absolute;
-  top: -80px;
-  left: -120px;
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(
-    circle at center,
-    rgba(11, 27, 51, 0.06),
-    transparent 70%
-  );
-  pointer-events: none;
-}
-
-.home::after {
-  content: "";
-  position: absolute;
-  bottom: -120px;
-  right: -140px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(
-    circle at center,
-    rgba(11, 27, 51, 0.04),
-    transparent 70%
-  );
-  pointer-events: none;
-}
 

@@ -1,4 +1,3 @@
-
 import PlaneDivider from "../components/UI/PlaneDivider";
 
 export default function Home() {

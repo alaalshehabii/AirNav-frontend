@@ -1,17 +1,15 @@
 
 .plane-divider {
-  position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin: 18px 0 22px;
+  gap: 14px;
   max-width: 420px;
+  margin: 16px 0 22px;
 }
 
-/* lines */
-.divider-line {
+.plane-divider .line {
   flex: 1;
-  height: 1.5px;
+  height: 2px;
   background: linear-gradient(
     to right,
     transparent,
@@ -21,17 +19,15 @@
   opacity: 0.35;
 }
 
-/* plane */
-.plane-icon {
+.plane-divider .plane {
   font-size: 18px;
   color: var(--navy);
   transform: rotate(90deg);
-  animation: planeFly 3.5s ease-in-out infinite;
-  opacity: 0.9;
+  animation: planeFloat 3s ease-in-out infinite;
 }
 
-/* animation */
-@keyframes planeFly {
+/* Subtle animation */
+@keyframes planeFloat {
   0% {
     transform: translateY(0) rotate(90deg);
   }
@@ -42,3 +38,4 @@
     transform: translateY(0) rotate(90deg);
   }
 }
+

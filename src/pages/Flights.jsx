@@ -71,7 +71,12 @@ export default function Flights() {
     });
 
     setEditingId(null);
-    setFormData({ flight_number: "", origin: "", destination: "", status: "" });
+    setFormData({
+      flight_number: "",
+      origin: "",
+      destination: "",
+      status: "",
+    });
     fetchFlights();
   };
 
@@ -115,24 +120,59 @@ export default function Flights() {
     <main className="page">
       <header className="page-header">
         <h1>Flights</h1>
-        <p className="muted">Browse flights and save tickets to My Flights.</p>
+        <p className="muted">
+          Browse flights and save tickets to My Flights.
+        </p>
       </header>
 
       {error && <p className="error">{error}</p>}
 
+      {/* ADMIN ADD / EDIT FLIGHT */}
       {user?.is_admin && (
-        <section className="admin-panel">
-          <h2>{editingId ? "Edit Flight" : "Add Flight"}</h2>
-          <form className="admin-form" onSubmit={handleSubmit}>
-            <input name="flight_number" placeholder="Flight Number" value={formData.flight_number} onChange={handleChange} required />
-            <input name="origin" placeholder="Origin" value={formData.origin} onChange={handleChange} required />
-            <input name="destination" placeholder="Destination" value={formData.destination} onChange={handleChange} required />
-            <input name="status" placeholder="Status" value={formData.status} onChange={handleChange} required />
-            <button className="primary-btn">{editingId ? "Update" : "Add"}</button>
+        <section className="add-flight-wrapper">
+          <h3>{editingId ? "Edit Flight" : "Add Flight"}</h3>
+
+          <form className="add-flight-form" onSubmit={handleSubmit}>
+            <input
+              name="flight_number"
+              placeholder="Flight Number"
+              value={formData.flight_number}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              name="origin"
+              placeholder="Origin"
+              value={formData.origin}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              name="destination"
+              placeholder="Destination"
+              value={formData.destination}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              name="status"
+              placeholder="Status"
+              value={formData.status}
+              onChange={handleChange}
+              required
+            />
+
+            <button className="add-flight-btn">
+              {editingId ? "Update" : "Add"}
+            </button>
           </form>
         </section>
       )}
 
+      {/* FLIGHTS GRID */}
       <div className="tickets-grid">
         {flights.map((flight) => (
           <FlightTicket
