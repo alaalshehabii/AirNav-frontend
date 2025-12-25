@@ -1,0 +1,22 @@
+
+.plane-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 24px;
+}
+
+.plane-divider .line {
+  height: 1px;
+  width: 70px;
+  background: var(--line);
+}
+
+.plane-divider .plane {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+
+
+

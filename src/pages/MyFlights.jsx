@@ -1,15 +1,23 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 import FlightTicket from "../components/FlightTicket/FlightTicket";
 
 const BASE_URL = "http://127.0.0.1:8000/api";
 
 export default function MyFlights() {
+  const { isAdmin } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [flights, setFlights] = useState([]);
   const [error, setError] = useState("");
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+    if (isAdmin) {
+      navigate("/flights");
+      return;
+    }
     fetchMyFlights();
   }, []);
 
@@ -18,11 +26,13 @@ export default function MyFlights() {
     const res = await fetch(`${BASE_URL}/my-flights`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
     if (!res.ok) {
       setFlights([]);
       setError("Could not load My Flights.");
       return;
     }
+
     const data = await res.json();
     setFlights(Array.isArray(data) ? data : []);
   };
@@ -43,7 +53,9 @@ export default function MyFlights() {
       </header>
 
       {error && <p className="error">{error}</p>}
-      {flights.length === 0 && !error && <p className="muted">No saved flights yet.</p>}
+      {flights.length === 0 && !error && (
+        <p className="muted">No saved flights yet.</p>
+      )}
 
       <div className="tickets-grid">
         {flights.map((flight) => (

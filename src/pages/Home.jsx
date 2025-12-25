@@ -1,22 +1,17 @@
-// src/pages/Home.jsx
+
+import PlaneDivider from "../components/UI/PlaneDivider";
+
 export default function Home() {
   return (
     <main className="page home">
       <section className="home-hero">
-        <div className="hero-title">
-          <h1>Welcome to AirNav</h1>
+        <h1>Welcome to AirNav</h1>
 
-          {/* Plane line UI */}
-          <div className="hero-plane">
-            <span className="line" />
-            <span className="plane">✈</span>
-            <span className="line" />
-          </div>
-        </div>
+        <PlaneDivider />
 
         <p className="home-subtitle">
           AirNav helps you browse flights, track their status in real time,
-          and save your trips, all in one clean and simple dashboard.
+          and save your trips — all in one clean and simple dashboard.
         </p>
       </section>
 
@@ -56,4 +51,3 @@ export default function Home() {
     </main>
   );
 }
-
