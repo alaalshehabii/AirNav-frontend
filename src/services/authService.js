@@ -1,64 +1,70 @@
 // src/services/authService.js
 
-// Use the `VITE_BACK_END_SERVER_URL` environment variable to set the base URL.
-// Note the `/auth` path added to the server URL that forms the base URL for
-// all the requests in this service.
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/auth`;
+const BASE_URL = "http://127.0.0.1:8000/api";
+
+/**
+ * Safely decode JWT payload (base64url → base64)
+ */
+const decodeToken = (token) => {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(atob(base64));
+  } catch {
+    throw new Error("Invalid token");
+  }
+};
+
+const handleResponse = async (res) => {
+  let data;
+
+  try {
+    data = await res.json();
+  } catch {
+    throw new Error("Server did not return JSON");
+  }
+
+  if (!res.ok) {
+    throw new Error(data.detail || data.message || "Request failed");
+  }
+
+  return data;
+};
 
 const signUp = async (formData) => {
   try {
-    const res = await fetch(`${BASE_URL}/sign-up`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch(`${BASE_URL}/users/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
-    const data = await res.json();
+    const data = await handleResponse(res);
 
-    if (data.err) {
-      throw new Error(data.err);
-    }
-
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-      console.log(data.token)
-      return JSON.parse(atob(data.token.split('.')[1]))
-    }
-
-    throw new Error('Invalid response from server');
+    localStorage.setItem("token", data.token);
+    return decodeToken(data.token);
   } catch (err) {
-    console.log(err);
-    throw new Error(err);
+    console.error("Signup error:", err.message);
+    throw err;
   }
 };
 
 const signIn = async (formData) => {
   try {
-    const res = await fetch(`${BASE_URL}/sign-in`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch(`${BASE_URL}/users/signin`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
-    const data = await res.json();
+    const data = await handleResponse(res);
 
-    if (data.err) {
-      throw new Error(data.err);
-    }
-
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-      return JSON.parse(atob(data.token.split('.')[1]))
-    }
-
-    throw new Error('Invalid response from server');
+    localStorage.setItem("token", data.token);
+    return decodeToken(data.token);
   } catch (err) {
-    console.log(err);
-    throw new Error(err);
+    console.error("Signin error:", err.message);
+    throw err;
   }
 };
 
-export {
-  signUp, signIn
-};
-
+export { signUp, signIn };
