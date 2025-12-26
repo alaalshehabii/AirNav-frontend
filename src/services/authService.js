@@ -2,9 +2,7 @@
 
 const BASE_URL = "http://127.0.0.1:8000/api";
 
-/**
- * Safely decode JWT payload (base64url → base64)
- */
+
 const decodeToken = (token) => {
   try {
     const base64Url = token.split(".")[1];

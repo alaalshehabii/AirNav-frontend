@@ -1,102 +1,171 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import FacilityCard from "../components/FacilityCard/FacilityCard";
+import "./Facilities.css";
+
+const BASE_URL = "http://127.0.0.1:8000/api";
 
 export default function Facilities() {
   const { user } = useContext(UserContext);
 
   const [facilities, setFacilities] = useState([]);
-  const [editingId, setEditingId] = useState(null);
+  const [search, setSearch] = useState("");
+  const [typeFilter, setTypeFilter] = useState("all");
 
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     name: "",
     type: "",
     terminal: "",
     location_description: "",
-    opening_hours: "",
   });
+
+  const fetchFacilities = async () => {
+    const res = await fetch(`${BASE_URL}/facilities`);
+    const data = await res.json();
+    setFacilities(data);
+  };
 
   useEffect(() => {
     fetchFacilities();
   }, []);
 
-  const fetchFacilities = () => {
-    fetch("http://127.0.0.1:8000/api/facilities")
-      .then(res => res.json())
-      .then(data => setFacilities(data));
-  };
+  const filtered = useMemo(() => {
+    return facilities.filter((f) => {
+      const matchesName = f.name
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const matchesType = typeFilter === "all" || f.type === typeFilter;
+      return matchesName && matchesType;
+    });
+  }, [facilities, search, typeFilter]);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
 
-    const method = editingId ? "PUT" : "POST";
-    const url = editingId
-      ? `http://127.0.0.1:8000/api/facilities/${editingId}`
-      : "http://127.0.0.1:8000/api/facilities";
-
-    fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    }).then(() => {
-      fetchFacilities();
-      setEditingId(null);
-      setFormData({
-        name: "",
-        type: "",
-        terminal: "",
-        location_description: "",
-        opening_hours: "",
-      });
+    await fetch(`${BASE_URL}/facilities`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(form),
     });
+
+    setForm({
+      name: "",
+      type: "",
+      terminal: "",
+      location_description: "",
+    });
+
+    fetchFacilities();
   };
 
-  const startEdit = (facility) => {
-    setEditingId(facility.id);
-    setFormData(facility);
+  const handleUpdate = async (id, data) => {
+    await fetch(`${BASE_URL}/facilities/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    fetchFacilities();
   };
 
-  const deleteFacility = (id) => {
-    fetch(`http://127.0.0.1:8000/api/facilities/${id}`, {
+  const handleDelete = async (id) => {
+    await fetch(`${BASE_URL}/facilities/${id}`, {
       method: "DELETE",
-    }).then(() => fetchFacilities());
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    fetchFacilities();
   };
 
   return (
-    <div>
-      <h1>Facilities</h1>
+    <div className="fac-page">
+      <h1>Airport Facilities</h1>
 
-      {user?.role === "admin" && (
-        <>
-          <h2>{editingId ? "Edit Facility" : "Add Facility"}</h2>
-          <form onSubmit={handleSubmit}>
-            <input name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-            <input name="type" placeholder="Type" value={formData.type} onChange={handleChange} required />
-            <input name="terminal" placeholder="Terminal" value={formData.terminal} onChange={handleChange} required />
-            <input name="location_description" placeholder="Location" value={formData.location_description} onChange={handleChange} required />
-            <input name="opening_hours" placeholder="Hours" value={formData.opening_hours} onChange={handleChange} required />
-            <button type="submit">{editingId ? "Update" : "Add"}</button>
-          </form>
-          <hr />
-        </>
+      {!user?.is_admin && (
+        <div className="fac-toolbar">
+          <input
+            placeholder="Search facilities..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          <select
+            value={typeFilter}
+            onChange={(e) => setTypeFilter(e.target.value)}
+          >
+            <option value="all">All types</option>
+            <option value="Cafe">Cafe</option>
+            <option value="Shop">Shop</option>
+            <option value="Prayer Room">Prayer Room</option>
+            <option value="ATM">ATM</option>
+            <option value="Medical">Medical</option>
+          </select>
+        </div>
       )}
 
-      <ul>
-        {facilities.map(facility => (
-          <li key={facility.id}>
-            <strong>{facility.name}</strong> ({facility.type}) — {facility.terminal}
-            {user?.role === "admin" && (
-              <>
-                <button onClick={() => startEdit(facility)}>Edit</button>
-                <button onClick={() => deleteFacility(facility.id)}>Delete</button>
-              </>
-            )}
-          </li>
+      {user?.is_admin && (
+        <form className="fac-admin" onSubmit={handleAdd}>
+          <h2>Add Facility</h2>
+
+          <input
+            placeholder="Facility name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            required
+          />
+
+          <select
+            value={form.type}
+            onChange={(e) => setForm({ ...form, type: e.target.value })}
+            required
+          >
+            <option value="">Select type</option>
+            <option value="Cafe">Cafe</option>
+            <option value="Shop">Shop</option>
+            <option value="Prayer Room">Prayer Room</option>
+            <option value="ATM">ATM</option>
+            <option value="Medical">Medical</option>
+          </select>
+
+          <input
+            placeholder="Terminal (e.g. T1)"
+            value={form.terminal}
+            onChange={(e) => setForm({ ...form, terminal: e.target.value })}
+            required
+          />
+
+          <input
+            placeholder="Location (e.g. Near Gate 2)"
+            value={form.location_description}
+            onChange={(e) =>
+              setForm({ ...form, location_description: e.target.value })
+            }
+            required
+          />
+
+          <button type="submit">Add Facility</button>
+        </form>
+      )}
+
+      <div className="fac-grid">
+        {filtered.map((facility) => (
+          <FacilityCard
+            key={facility.id}
+            facility={facility}
+            isAdmin={user?.is_admin}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
