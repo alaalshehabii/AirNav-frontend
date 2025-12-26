@@ -11,15 +11,24 @@
   padding: 14px 28px;
 }
 
-/* Logo */
+/* ================= LOGO ================= */
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 18px;
   font-weight: 800;
   color: var(--navy);
   letter-spacing: 0.5px;
 }
 
-/* Center links */
+.logo-icon {
+  font-size: 18px;
+  color: var(--gold);
+  transform: rotate(-10deg);
+}
+
+/* ================= CENTER LINKS ================= */
 .nav-center {
   display: flex;
   gap: 24px;
@@ -29,6 +38,7 @@
   font-weight: 500;
   color: var(--navy);
   opacity: 0.85;
+  position: relative;
   transition: opacity 0.2s ease;
 }
 
@@ -36,7 +46,23 @@
   opacity: 1;
 }
 
-/* Right side */
+/* subtle underline animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ================= RIGHT SIDE ================= */
 .nav-right {
   display: flex;
   align-items: center;
@@ -48,7 +74,7 @@
   color: var(--muted);
 }
 
-/* Sign Out button (FIXED) */
+/* ================= BUTTONS ================= */
 .logout-btn {
   background: linear-gradient(135deg, #0b1b33, #102a52);
   color: white;
@@ -66,7 +92,6 @@
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
 }
 
-/* Sign Up CTA */
 .signup-btn {
   background: var(--navy);
   color: white;
@@ -81,7 +106,7 @@
   transform: translateY(-1px);
 }
 
-
+/* ================= ADMIN LINK ================= */
 .admin-link {
   font-weight: 600;
   color: var(--navy);
@@ -94,4 +119,14 @@
   background: rgba(0, 0, 0, 0.04);
 }
 
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .nav-center {
+    gap: 16px;
+  }
+
+  .navbar {
+    padding: 12px 18px;
+  }
+}
 
