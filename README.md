@@ -31,6 +31,10 @@ The application uses JWT-based authentication across the frontend and backend. G
 ## 🗄️ Database Design
 The database consists of users, flights, facilities, notices, and a user_flights join table to represent relationships between users and their saved flights.
 
+
+## UI Design Tools
+- **React Icons (npm)**
+
 ## 🧰 Technologies Used
 - React  
 - FastAPI  
