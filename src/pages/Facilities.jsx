@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useMemo, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import FacilityCard from "../components/FacilityCard/FacilityCard";
@@ -86,18 +87,21 @@ export default function Facilities() {
   };
 
   return (
-    <div className="fac-page">
+    <main className="page fac-page">
       <h1>Airport Facilities</h1>
 
+      {/* SEARCH + FILTER */}
       {!user?.is_admin && (
         <div className="fac-toolbar">
           <input
-            placeholder="Search facilities..."
+            className="fac-search"
+            placeholder="Search facilities by name..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
 
           <select
+            className="fac-filter"
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
           >
@@ -111,6 +115,7 @@ export default function Facilities() {
         </div>
       )}
 
+      {/* ADMIN FORM */}
       {user?.is_admin && (
         <form className="fac-admin" onSubmit={handleAdd}>
           <h2>Add Facility</h2>
@@ -155,6 +160,7 @@ export default function Facilities() {
         </form>
       )}
 
+      {/* GRID */}
       <div className="fac-grid">
         {filtered.map((facility) => (
           <FacilityCard
@@ -166,7 +172,7 @@ export default function Facilities() {
           />
         ))}
       </div>
-    </div>
+    </main>
   );
 }
 

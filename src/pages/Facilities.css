@@ -1,48 +1,110 @@
-
 .fac-page {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
-  padding: 30px 22px 60px;
+  padding: 32px 22px 70px;
 }
 
+/* ================= TOOLBAR ================= */
 .fac-toolbar {
-  display: flex;
-  gap: 12px;
-  margin: 18px 0;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 14px;
+  margin: 22px 0 34px;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
 }
 
+.fac-search,
+.fac-filter {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: #faf7f2;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fac-search::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.fac-search:focus,
+.fac-filter:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200, 162, 77, 0.2);
+}
+
+@media (max-width: 700px) {
+  .fac-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================= ADMIN ================= */
 .fac-admin {
-  margin: 22px 0;
+  margin: 26px 0 36px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 12px;
+  background: var(--card);
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
 }
 
 .fac-admin h2 {
   grid-column: span 5;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .fac-admin input,
 .fac-admin select {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #cbd5f5;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #faf7f2;
+  font-weight: 600;
+}
+
+.fac-admin input:focus,
+.fac-admin select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200, 162, 77, 0.2);
 }
 
 .fac-admin button {
   grid-column: span 5;
-  padding: 10px;
-  border-radius: 12px;
+  padding: 14px;
+  border-radius: 16px;
   border: none;
-  background: #0f172a;
+  background: linear-gradient(to right, var(--navy), var(--navy-2));
   color: white;
-  font-weight: 600;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.fac-admin button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(11, 27, 51, 0.35);
+}
+
+/* ================= GRID ================= */
 .fac-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
 @media (max-width: 900px) {
@@ -56,5 +118,4 @@
     grid-template-columns: 1fr;
   }
 }
-
 
