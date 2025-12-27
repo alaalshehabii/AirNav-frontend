@@ -1,3 +1,4 @@
+
 .ticket {
   position: relative;
   display: flex;
@@ -6,33 +7,33 @@
 
   background: var(--card);
   border-radius: 22px;
-  padding: 28px 34px;
-  min-height: 160px;
+  padding: 30px 34px;
+  min-height: 190px;
 
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .ticket:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.14);
 }
 
-/* LEFT */
+/* ================= LEFT ================= */
 .ticket-left {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-width: 65%;
+  gap: 16px;
+  max-width: 68%;
 }
 
 .flight-number {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--navy);
 }
 
-/* ROUTE */
+/* ================= ROUTE ================= */
 .route {
   display: flex;
   align-items: center;
@@ -41,14 +42,14 @@
 
 .city {
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .route-visual {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-width: 140px;
+  gap: 12px;
+  min-width: 160px;
 }
 
 .route-line {
@@ -57,17 +58,16 @@
   background: linear-gradient(
     to right,
     transparent,
-    var(--navy),
+    var(--gold),
     transparent
   );
-  opacity: 0.35;
+  opacity: 0.6;
 }
 
-/* PLANES */
+/* ✈ BIGGER PLANES */
 .plane {
-  font-size: 15px;
+  font-size: 22px;
   color: var(--navy);
-  opacity: 0.85;
 }
 
 .plane.takeoff {
@@ -78,10 +78,39 @@
   transform: rotate(135deg);
 }
 
-/* STATUS */
+/* ================= TIMES ================= */
+.times {
+  display: flex;
+  gap: 26px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.times span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.times strong {
+  color: var(--navy);
+  font-size: 15px;
+}
+
+/* ================= META ================= */
+.meta {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ================= STATUS ================= */
 .status {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .status.on-time,
@@ -99,7 +128,7 @@
   color: var(--bad);
 }
 
-/* PERFORATION */
+/* ================= PERFORATION ================= */
 .ticket::after {
   content: "";
   position: absolute;
@@ -107,10 +136,9 @@
   bottom: 20px;
   right: 150px;
   border-left: 2px dashed var(--line);
-  pointer-events: none;
 }
 
-/* RIGHT */
+/* ================= RIGHT ================= */
 .ticket-right {
   min-width: 130px;
   display: flex;
@@ -118,21 +146,21 @@
   align-items: center;
 }
 
-/* USER BUTTONS */
+/* ================= USER BUTTON ================= */
 .save-btn {
   background: var(--navy);
   color: white;
   border: none;
   padding: 12px 22px;
   border-radius: 14px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .save-btn:hover {
   background: var(--navy-2);
-  transform: scale(1.05);
+  transform: translateY(-1px);
 }
 
 .save-btn.danger {
@@ -143,19 +171,17 @@
   background: #b91c1c;
 }
 
-/* ADMIN */
+/* ================= ADMIN ================= */
 .admin-actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center;
 }
 
-/* EDIT BUTTON — FIXED */
 .admin-btn {
   background: transparent;
   border: 1px solid var(--navy);
-  color: var(--navy);              /* ✅ FIX: text now visible */
+  color: var(--navy);
   padding: 10px 16px;
   border-radius: 12px;
   font-weight: 600;
@@ -165,10 +191,9 @@
 
 .admin-btn:hover {
   background: var(--navy);
-  color: #ffffff;
+  color: white;
 }
 
-/* DELETE */
 .admin-btn.danger {
   border-color: var(--bad);
   color: var(--bad);
@@ -178,6 +203,3 @@
   background: var(--bad);
   color: white;
 }
-
-
-

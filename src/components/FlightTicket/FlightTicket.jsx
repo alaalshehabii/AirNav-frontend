@@ -9,19 +9,13 @@ export default function FlightTicket({
   onEdit,
   onDelete,
 }) {
-  const statusClass = flight.status
-    .toLowerCase()
-    .replace(" ", "-");
+  const statusClass = flight.status.toLowerCase().replace(" ", "-");
 
   return (
     <div className="ticket">
-      {/* LEFT SIDE */}
       <div className="ticket-left">
-        <div className="flight-number">
-          {flight.flight_number}
-        </div>
+        <div className="flight-number">{flight.flight_number}</div>
 
-        {/* ROUTE */}
         <div className="route">
           <span className="city">{flight.origin}</span>
 
@@ -34,42 +28,33 @@ export default function FlightTicket({
           <span className="city">{flight.destination}</span>
         </div>
 
-        <div className={`status ${statusClass}`}>
-          {flight.status}
+        <div className="flight-meta">
+          <span>{flight.flight_date}</span>
+          <span>{flight.departure_time} → {flight.arrival_time}</span>
+          <span>Terminal {flight.terminal} · Gate {flight.gate}</span>
         </div>
+
+        <div className={`status ${statusClass}`}>{flight.status}</div>
       </div>
 
-      {/* RIGHT SIDE */}
       <div className="ticket-right">
         {!isAdmin &&
           (isSaved ? (
-            <button
-              className="save-btn danger"
-              onClick={onRemove}
-            >
+            <button className="save-btn danger" onClick={onRemove}>
               Remove
             </button>
           ) : (
-            <button
-              className="save-btn"
-              onClick={onSave}
-            >
+            <button className="save-btn" onClick={onSave}>
               Save
             </button>
           ))}
 
         {isAdmin && (
           <div className="admin-actions">
-            <button
-              className="admin-btn"
-              onClick={onEdit}
-            >
+            <button className="admin-btn" onClick={onEdit}>
               Edit
             </button>
-            <button
-              className="admin-btn danger"
-              onClick={onDelete}
-            >
+            <button className="admin-btn danger" onClick={onDelete}>
               Delete
             </button>
           </div>

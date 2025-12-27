@@ -19,6 +19,11 @@ export default function Flights() {
     origin: "",
     destination: "",
     status: "",
+    flight_date: "",
+    departure_time: "",
+    arrival_time: "",
+    terminal: "",
+    gate: "",
   });
 
   useEffect(() => {
@@ -76,7 +81,13 @@ export default function Flights() {
       origin: "",
       destination: "",
       status: "",
+      flight_date: "",
+      departure_time: "",
+      arrival_time: "",
+      terminal: "",
+      gate: "",
     });
+
     fetchFlights();
   };
 
@@ -87,6 +98,11 @@ export default function Flights() {
       origin: flight.origin,
       destination: flight.destination,
       status: flight.status,
+      flight_date: flight.flight_date,
+      departure_time: flight.departure_time,
+      arrival_time: flight.arrival_time,
+      terminal: flight.terminal,
+      gate: flight.gate,
     });
   };
 
@@ -127,43 +143,21 @@ export default function Flights() {
 
       {error && <p className="error">{error}</p>}
 
-      {/* ADMIN ADD / EDIT FLIGHT */}
+      {/* ADMIN FORM */}
       {user?.is_admin && (
         <section className="add-flight-wrapper">
           <h3>{editingId ? "Edit Flight" : "Add Flight"}</h3>
 
           <form className="add-flight-form" onSubmit={handleSubmit}>
-            <input
-              name="flight_number"
-              placeholder="Flight Number"
-              value={formData.flight_number}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              name="origin"
-              placeholder="Origin"
-              value={formData.origin}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              name="destination"
-              placeholder="Destination"
-              value={formData.destination}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              name="status"
-              placeholder="Status"
-              value={formData.status}
-              onChange={handleChange}
-              required
-            />
+            <input name="flight_number" placeholder="Flight Number" value={formData.flight_number} onChange={handleChange} required />
+            <input name="origin" placeholder="Origin" value={formData.origin} onChange={handleChange} required />
+            <input name="destination" placeholder="Destination" value={formData.destination} onChange={handleChange} required />
+            <input name="flight_date" type="date" value={formData.flight_date} onChange={handleChange} required />
+            <input name="departure_time" type="time" value={formData.departure_time} onChange={handleChange} required />
+            <input name="arrival_time" type="time" value={formData.arrival_time} onChange={handleChange} required />
+            <input name="terminal" placeholder="Terminal (e.g. T1)" value={formData.terminal} onChange={handleChange} required />
+            <input name="gate" placeholder="Gate (e.g. A12)" value={formData.gate} onChange={handleChange} required />
+            <input name="status" placeholder="Status" value={formData.status} onChange={handleChange} required />
 
             <button className="add-flight-btn">
               {editingId ? "Update" : "Add"}
@@ -172,7 +166,7 @@ export default function Flights() {
         </section>
       )}
 
-      {/* FLIGHTS GRID */}
+      {/* FLIGHTS */}
       <div className="tickets-grid">
         {flights.map((flight) => (
           <FlightTicket
@@ -190,4 +184,5 @@ export default function Flights() {
     </main>
   );
 }
+
 
