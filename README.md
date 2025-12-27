@@ -44,22 +44,17 @@ The database consists of users, flights, facilities, notices, and a user_flights
 - JavaScript  
 - CSS
   
-<img width="900" alt="Screenshot 2025-12-27 at 5 58 33 AM" src="https://github.com/user-attachments/assets/24b7fe1d-1af1-4649-9170-9c52dcb1f254" />
-<img width="900" alt="Screenshot 2025-12-27 at 5 58 51 AM" src="https://github.com/user-attachments/assets/aeed4389-7336-43fc-b6fa-d40366a55088" />
-<img width="900" alt="Screenshot 2025-12-27 at 5 59 17 AM" src="https://github.com/user-attachments/assets/000e5ba8-d701-4a37-93ad-9eab46d1f7c0" />
-<img width="900" alt="Screenshot 2025-12-27 at 5 59 27 AM" src="https://github.com/user-attachments/assets/ec479009-1cf3-40cc-9f34-f14354a5c295" />
-<img width="900"  alt="Screenshot 2025-12-27 at 5 59 38 AM" src="https://github.com/user-attachments/assets/226dd78c-da53-456a-bc61-ffb7d068c0e6" />
-<img width="900" alt="Screenshot 2025-12-27 at 6 00 25 AM" src="https://github.com/user-attachments/assets/d04f3a24-281b-42e3-b681-d1c60a2bb36c" />
-<img width="900" alt="Screenshot 2025-12-27 at 5 59 08 AM" src="https://github.com/user-attachments/assets/2c35d2d3-45f3-43c7-a136-4bdf4bc2b1bf" />
+<img width="500" alt="Screenshot 2025-12-27 at 5 58 33 AM" src="https://github.com/user-attachments/assets/24b7fe1d-1af1-4649-9170-9c52dcb1f254" />
+<img width="500" alt="Screenshot 2025-12-27 at 5 58 51 AM" src="https://github.com/user-attachments/assets/aeed4389-7336-43fc-b6fa-d40366a55088" />
+<img width="500" alt="Screenshot 2025-12-27 at 5 59 17 AM" src="https://github.com/user-attachments/assets/000e5ba8-d701-4a37-93ad-9eab46d1f7c0" />
+<img width="500" alt="Screenshot 2025-12-27 at 5 59 27 AM" src="https://github.com/user-attachments/assets/ec479009-1cf3-40cc-9f34-f14354a5c295" />
+<img width="500"  alt="Screenshot 2025-12-27 at 5 59 38 AM" src="https://github.com/user-attachments/assets/226dd78c-da53-456a-bc61-ffb7d068c0e6" />
+<img width="500" alt="Screenshot 2025-12-27 at 6 00 25 AM" src="https://github.com/user-attachments/assets/d04f3a24-281b-42e3-b681-d1c60a2bb36c" />
+<img width="500" alt="Screenshot 2025-12-27 at 5 59 08 AM" src="https://github.com/user-attachments/assets/2c35d2d3-45f3-43c7-a136-4bdf4bc2b1bf" />
 
 
   ## ERD
-  <img width="1000"  alt="Screenshot 2025-12-27 at 5 53 34 AM" src="https://github.com/user-attachments/assets/84031984-c3cb-472d-b0a0-9f52f7ca28ef" />
-
-  
-<img width="500"  alt="ChatGPT_Image_Dec_15%2C_2025_at_04_35_25_PM" src="https://github.com/user-attachments/assets/19318356-79bc-4a24-abc4-97e8bca1a101" />
-<img width="5004"  alt="ChatGPT_Image_Dec_15%2C_2025_at_04_37_02_PM" src="https://github.com/user-attachments/assets/67520909-3a31-422a-9b35-f6e2370b1e26" />
-
+  <img width="400"  alt="Screenshot 2025-12-27 at 5 53 34 AM" src="https://github.com/user-attachments/assets/84031984-c3cb-472d-b0a0-9f52f7ca28ef" />
 
 
 ## 🔮 Next Steps
@@ -67,3 +62,10 @@ The database consists of users, flights, facilities, notices, and a user_flights
 - Implement user profile editing  
 - Improve facility search and filtering  
 - Enhance UI and accessibility  
+
+ ## Wireframes
+
+ 
+<img width="300" alt="ChatGPT_Image_Dec_15%2C_2025_at_04_35_25_PM" src="https://github.com/user-attachments/assets/efb6cbe3-272f-4b2e-abf3-7d9776339945" />
+<img width="300" alt="ChatGPT_Image_Dec_15%2C_2025_at_04_37_02_PM" src="https://github.com/user-attachments/assets/f5e363dd-63a4-46cd-a29d-19d1e13e93a9" />
+
