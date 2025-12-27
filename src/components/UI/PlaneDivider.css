@@ -26,7 +26,6 @@
   animation: planeFloat 3s ease-in-out infinite;
 }
 
-/* Subtle animation */
 @keyframes planeFloat {
   0% {
     transform: translateY(0) rotate(90deg);

@@ -9,8 +9,9 @@ export default function Home() {
         <PlaneDivider />
 
         <p className="home-subtitle">
-          AirNav helps you browse flights, track their status in real time,
-          and save your trips — all in one clean and simple dashboard.
+          AirNav makes traveling easier by helping you explore flights,
+          follow their status in real time, and navigate the airport smoothly,
+          all from one simple place.
         </p>
       </section>
 
@@ -19,34 +20,35 @@ export default function Home() {
           <h3>Browse Flights</h3>
           <p>
             View available flights with clear routes, flight numbers,
-            and up-to-date statuses.
+            timings, and up to date statuses.
           </p>
         </div>
 
         <div className="home-card">
-          <h3>Track Status</h3>
+          <h3>Track Flight Status</h3>
           <p>
-            Instantly see whether a flight is On Time, Boarding,
-            Delayed, In Air, or Landed.
+            Instantly check whether a flight is on time, boarding,
+            delayed, in air, or has landed.
           </p>
         </div>
 
         <div className="home-card">
-          <h3>Save Your Trips</h3>
+          <h3>Airport Facilities</h3>
           <p>
-            Save important flights to your personal list and access
-            them anytime from My Flights.
+            Discover restaurants, cafés, shops, lounges, and essential
+            services available inside the airport.
           </p>
         </div>
 
         <div className="home-card">
-          <h3>Admin Management</h3>
+          <h3>Airport Guide</h3>
           <p>
-            Administrators can add, edit, and manage flights
-            to keep information accurate and reliable.
+            Get helpful tips, notices, and guidance to move through
+            the airport smoothly and stress free.
           </p>
         </div>
       </section>
     </main>
   );
 }
+

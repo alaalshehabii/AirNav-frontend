@@ -1,16 +1,15 @@
 :root{
-  /* ===== GULF AIR INSPIRED THEME ===== */
-  --bg: #f6f1e7;          /* light beige */
-  --card: #ffffff;       /* clean white cards */
-  --navy: #0b1b33;       /* deep aviation navy */
-  --navy-2: #102a52;     /* hover navy */
-  --gold: #c8a24d;       /* soft premium gold */
-  --muted: #6b7280;      /* soft gray text */
-  --line: #e7dfd3;       /* subtle separators */
+  --bg: #f6f1e7;         
+  --card: #ffffff;      
+  --navy: #0b1b33;      
+  --navy-2: #102a52;     
+  --gold: #c8a24d;       
+  --muted: #6b7280;      
+  --line: #e7dfd3;       
 
-  --good: #2e7d32;       /* landed / on time */
-  --warn: #c47f00;       /* boarding */
-  --bad: #b91c1c;        /* delayed / cancelled */
+  --good: #2e7d32;       
+  --warn: #c47f00;       
+  --bad: #b91c1c;        
 }
 
 *{

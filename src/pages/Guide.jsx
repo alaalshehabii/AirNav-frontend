@@ -25,7 +25,6 @@ export default function Guide() {
     message: "",
   });
 
-  /* ================= FETCH NOTICES ================= */
   const fetchNotices = async () => {
     const res = await fetch(`${BASE_URL}/notices`);
     const data = await res.json();
@@ -36,7 +35,6 @@ export default function Guide() {
     fetchNotices();
   }, []);
 
-  /* ================= ADMIN ACTIONS ================= */
   const handleAdd = async (e) => {
     e.preventDefault();
 
@@ -66,7 +64,7 @@ export default function Guide() {
 
   return (
     <main className="page guide-page">
-      {/* ================= HERO ================= */}
+      {/* Guide */}
       <header className="guide-hero">
         <h1>Airport Guide</h1>
         <p>
@@ -75,7 +73,7 @@ export default function Guide() {
         </p>
       </header>
 
-      {/* ================= AIRPORT NOTICES (FIRST) ================= */}
+      {/* AIRPORT NOTICES  */}
       {(notices.length > 0 || user?.is_admin) && (
         <section className="notices">
           <h2>Airport Notices</h2>
@@ -153,7 +151,7 @@ export default function Guide() {
         </section>
       )}
 
-      {/* ================= JOURNEY (2x2) ================= */}
+      {/* JOURNEY (2x2) */}
       <section className="journey">
         <h2>Your Airport Journey</h2>
 

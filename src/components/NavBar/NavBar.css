@@ -11,7 +11,6 @@
   padding: 14px 28px;
 }
 
-/* ================= LOGO ================= */
 .logo {
   display: flex;
   align-items: center;
@@ -28,7 +27,6 @@
   transform: rotate(-10deg);
 }
 
-/* ================= CENTER LINKS ================= */
 .nav-center {
   display: flex;
   gap: 24px;
@@ -46,7 +44,6 @@
   opacity: 1;
 }
 
-/* subtle underline animation */
 .nav-link::after {
   content: "";
   position: absolute;
@@ -62,7 +59,6 @@
   width: 100%;
 }
 
-/* ================= RIGHT SIDE ================= */
 .nav-right {
   display: flex;
   align-items: center;
@@ -74,7 +70,6 @@
   color: var(--muted);
 }
 
-/* ================= BUTTONS ================= */
 .logout-btn {
   background: linear-gradient(135deg, #0b1b33, #102a52);
   color: white;
@@ -106,7 +101,6 @@
   transform: translateY(-1px);
 }
 
-/* ================= ADMIN LINK ================= */
 .admin-link {
   font-weight: 600;
   color: var(--navy);
@@ -119,7 +113,6 @@
   background: rgba(0, 0, 0, 0.04);
 }
 
-/* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
   .nav-center {
     gap: 16px;

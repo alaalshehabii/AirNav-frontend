@@ -1,11 +1,8 @@
-// src/contexts/UserContext.jsx
 
 import { createContext, useState, useEffect } from "react";
 
-// Create the context
 const UserContext = createContext();
 
-// Helper: safely decode JWT
 const decodeToken = (token) => {
   try {
     const base64Url = token.split(".")[1];
@@ -17,7 +14,7 @@ const decodeToken = (token) => {
 };
 
 function UserProvider({ children }) {
-  // Load user from token (if exists)
+
   const getUserFromToken = () => {
     const token = localStorage.getItem("token");
     if (!token) return null;
@@ -26,7 +23,6 @@ function UserProvider({ children }) {
 
   const [user, setUser] = useState(getUserFromToken());
 
-  // Keep user in sync if token changes (refresh / manual edits)
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -36,7 +32,6 @@ function UserProvider({ children }) {
     }
   }, []);
 
-  // Logout helper (VERY useful for NavBar)
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);

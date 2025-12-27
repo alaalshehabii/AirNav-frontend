@@ -1,7 +1,7 @@
 import "./AdminDashboard.css";
 
 export default function AdminDashboard() {
-  // Fake analytics data (safe + professional)
+  // Fake analytics data 
   const stats = {
     totalFlights: 128,
     onTime: 76,

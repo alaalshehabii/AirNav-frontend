@@ -25,13 +25,13 @@ const App = () => {
       <NavBar />
 
       <Routes>
-        {/* ================= PUBLIC ================= */}
+        {/*  PUBLIC */}
         <Route path="/" element={<Home />} />
         <Route path="/guide" element={<Guide />} />
         <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/sign-in" element={<SignInForm />} />
 
-        {/* ================= AUTHENTICATED ================= */}
+        {/*  AUTHENTICATED */}
         {user && (
           <>
             <Route path="/flights" element={<Flights />} />

@@ -1,9 +1,7 @@
-/* ================= PAGE ================= */
 .guide-page {
   padding-top: 20px;
 }
 
-/* ================= HERO ================= */
 .guide-hero {
   max-width: 760px;
   margin-bottom: 56px;
@@ -22,7 +20,6 @@
   line-height: 1.7;
 }
 
-/* ================= NOTICES ================= */
 .notices {
   margin-bottom: 70px;
 }
@@ -37,7 +34,6 @@
   margin-bottom: 18px;
 }
 
-/* ADMIN FORM */
 .notice-form {
   background: var(--card);
   border-radius: 18px;
@@ -67,7 +63,6 @@
   cursor: pointer;
 }
 
-/* NOTICE GRID — 3x3 */
 .notice-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -86,7 +81,6 @@
   }
 }
 
-/* CARD */
 .notice-card {
   background: var(--card);
   border-radius: 18px;
@@ -114,7 +108,6 @@
   background: rgba(185, 28, 28, 0.06);
 }
 
-/* HEADER */
 .notice-head {
   display: flex;
   align-items: center;
@@ -144,14 +137,12 @@
   cursor: pointer;
 }
 
-/* ================= JOURNEY ================= */
 .journey h2 {
   font-size: 26px;
   font-weight: 800;
   margin-bottom: 22px;
 }
 
-/* 2x2 GRID */
 .journey-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -1,3 +1,4 @@
+
 import "./FlightTicket.css";
 
 export default function FlightTicket({
@@ -29,12 +30,14 @@ export default function FlightTicket({
         </div>
 
         <div className="flight-meta">
-          <span>{flight.flight_date}</span>
-          <span>{flight.departure_time} → {flight.arrival_time}</span>
-          <span>Terminal {flight.terminal} · Gate {flight.gate}</span>
+          <span> {flight.flight_date}</span>
+          <span> {flight.departure_time} → {flight.arrival_time}</span>
+          <span> Terminal {flight.terminal} · Gate {flight.gate}</span>
         </div>
 
-        <div className={`status ${statusClass}`}>{flight.status}</div>
+        <div className={`status ${statusClass}`}>
+          {flight.status}
+        </div>
       </div>
 
       <div className="ticket-right">
