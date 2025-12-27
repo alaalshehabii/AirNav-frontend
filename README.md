@@ -56,6 +56,11 @@ The database consists of users, flights, facilities, notices, and a user_flights
   ## ERD
   <img width="1000"  alt="Screenshot 2025-12-27 at 5 53 34 AM" src="https://github.com/user-attachments/assets/84031984-c3cb-472d-b0a0-9f52f7ca28ef" />
 
+  
+<img width="500"  alt="ChatGPT_Image_Dec_15%2C_2025_at_04_35_25_PM" src="https://github.com/user-attachments/assets/19318356-79bc-4a24-abc4-97e8bca1a101" />
+<img width="5004"  alt="ChatGPT_Image_Dec_15%2C_2025_at_04_37_02_PM" src="https://github.com/user-attachments/assets/67520909-3a31-422a-9b35-f6e2370b1e26" />
+
+
 
 ## 🔮 Next Steps
 - Add real-time flight status updates  
